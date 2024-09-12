@@ -6,14 +6,46 @@ body, html {
     background-color: #0f0e17;
     color: #fffffe;
     font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #2e2f3e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+    font-size: 2.5em;
+    margin: 0;
+    color: #4ade80; /* Changed from orange to green */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.game-subtitle {
+    font-size: 1.2em;
+    margin: 5px 0 0;
+    color: #22c55e; /* Darker shade of green */
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
 }
 
 #gameWrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    max-width: 100%;
+    height: calc(100vh - 200px);
 }
 
 #scoreBoard {
@@ -21,12 +53,15 @@ body, html {
     text-align: center;
     font-size: 18px;
     background-color: #2e2f3e;
+    border-radius: 5px 5px 0 0;
 }
 
 #gameContainer {
-    flex-grow: 1;
     position: relative;
     overflow: hidden;
+    border: 2px solid #4ade80; /* Changed from orange to green */
+    border-radius: 0 0 5px 5px;
+    flex-grow: 1;
 }
 
 canvas {
@@ -67,7 +102,7 @@ canvas {
 }
 
 .controlBtn {
-    background-color: #4ade80;
+    background-color: #4ade80; /* Changed from orange to green */
     border: none;
     border-radius: 8px;
     color: #0f0e17;
@@ -83,7 +118,7 @@ canvas {
 }
 
 .controlBtn:active {
-    background-color: #22c55e;
+    background-color: #22c55e; /* Darker shade of green */
 }
 
 #upBtn, #downBtn {
@@ -100,7 +135,31 @@ canvas {
     width: 48%;
 }
 
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #2e2f3e;
+    font-size: 0.8em;
+}
+
+footer a {
+    color: #4ade80; /* Changed from orange to green */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 600px) {
+    .game-title {
+        font-size: 2em;
+    }
+
+    .game-subtitle {
+        font-size: 1em;
+    }
+
     #scoreBoard {
         font-size: 14px;
     }
@@ -109,8 +168,8 @@ canvas {
         display: flex;
     }
 
-    #gameContainer {
-        height: calc(100vh - 220px);
+    #gameWrapper {
+        height: calc(100vh - 250px);
     }
 }
 

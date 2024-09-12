@@ -8,10 +8,10 @@ const mobileControls = document.getElementById('mobileControls');
 const gameContainer = document.getElementById('gameContainer');
 const gameWrapper = document.getElementById('gameWrapper');
 
-let snake, food, dx, dy, score, highScore, gameLoop, isMobile;
+let snake, food, dx, dy, score, highScore, gameLoop, isMobile, GRID_SIZE;
 
-const GRID_SIZE = 20;
-const SNAKE_COLOR = '#ff8906';
+// Changed orange color to green
+const SNAKE_COLOR = '#4ade80';
 const SNAKE_BORDER_COLOR = '#e53170';
 const FOOD_COLOR = '#e53170';
 const BACKGROUND_COLOR = '#0f0e17';
@@ -19,20 +19,25 @@ const BACKGROUND_COLOR = '#0f0e17';
 function init() {
     isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    gameWrapper.style.height = `${window.innerHeight}px`;
+    const scoreboardHeight = document.getElementById('scoreBoard').offsetHeight;
+    const headerHeight = document.querySelector('header').offsetHeight;
+    const footerHeight = document.querySelector('footer').offsetHeight;
 
     if (isMobile) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight - document.getElementById('scoreBoard').offsetHeight - document.getElementById('mobileControls').offsetHeight;
+        const mobileControlsHeight = document.getElementById('mobileControls').offsetHeight;
+        canvas.width = window.innerWidth - 4; // Subtracting 4 to account for the border
+        canvas.height = window.innerHeight - scoreboardHeight - headerHeight - footerHeight - mobileControlsHeight - 4; // Subtracting 4 to account for the border
         mobileControls.style.display = 'flex';
     } else {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight - document.getElementById('scoreBoard').offsetHeight;
+        canvas.width = window.innerWidth - 4; // Subtracting 4 to account for the border
+        canvas.height = window.innerHeight - scoreboardHeight - headerHeight - footerHeight - 4; // Subtracting 4 to account for the border
         mobileControls.style.display = 'none';
     }
 
     gameContainer.style.width = `${canvas.width}px`;
     gameContainer.style.height = `${canvas.height}px`;
+
+    GRID_SIZE = Math.floor(Math.min(canvas.width, canvas.height) / 20);
 
     snake = [{ x: Math.floor(canvas.width / GRID_SIZE / 2), y: Math.floor(canvas.height / GRID_SIZE / 2) }];
     placeFood();
@@ -98,8 +103,8 @@ function moveSnake() {
 
 function checkCollision() {
     const head = snake[0];
-    if (head.x < 0 || head.x >= canvas.width / GRID_SIZE || 
-        head.y < 0 || head.y >= canvas.height / GRID_SIZE) {
+    if (head.x < 0 || head.x >= Math.floor(canvas.width / GRID_SIZE) || 
+        head.y < 0 || head.y >= Math.floor(canvas.height / GRID_SIZE)) {
         return true;
     }
     for (let i = 1; i < snake.length; i++) {
@@ -112,8 +117,8 @@ function checkCollision() {
 
 function placeFood() {
     food = {
-        x: Math.floor(Math.random() * (canvas.width / GRID_SIZE)),
-        y: Math.floor(Math.random() * (canvas.height / GRID_SIZE))
+        x: Math.floor(Math.random() * Math.floor(canvas.width / GRID_SIZE)),
+        y: Math.floor(Math.random() * Math.floor(canvas.height / GRID_SIZE))
     };
 }
 
@@ -223,6 +228,10 @@ function handleDirectionChange(newDx, newDy) {
 }
 
 window.addEventListener('keydown', (e) => {
+    if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
+        e.preventDefault(); // Prevent default scrolling behavior
+    }
+    
     if (e.code === 'Space') {
         if (!gameLoop) {
             init();
@@ -243,7 +252,7 @@ function addMobileControls() {
     const controls = ['upBtn', 'downBtn', 'leftBtn', 'rightBtn'];
     controls.forEach(id => {
         document.getElementById(id).addEventListener('touchstart', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default touch behavior
             switch(id) {
                 case 'upBtn': handleDirectionChange(0, -1); break;
                 case 'downBtn': handleDirectionChange(0, 1); break;

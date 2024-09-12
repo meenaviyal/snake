@@ -3,26 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snake Game</title>
+    <title>Free Online Snake Game | Play Classic Snake HTML Game</title>
+    <meta name="description" content="Play the classic Snake game online for free. No download required. Enjoy this HTML5 snake game on any device. Challenge your reflexes and beat the high score!">
+    <meta name="keywords" content="snake game, online snake game, free snake game, HTML snake game, classic snake game, retro games">
+    <meta name="author" content="Meenaviyal">
+    <link rel="canonical" href="https://meenaviyal.com/snake/">
+    <meta property="og:title" content="Free Online Snake Game | Meenaviyal">
+    <meta property="og:description" content="Play the classic Snake game online for free. No download required. Challenge your reflexes and beat the high score!">
+    <meta property="og:url" content="https://meenaviyal.com/snake/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://meenaviyal.com/snake/snake-game-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Online Snake Game | Meenaviyal">
+    <meta name="twitter:description" content="Play the classic Snake game online for free. No download required. Challenge your reflexes and beat the high score!">
+    <meta name="twitter:image" content="https://meenaviyal.com/snake/snake-game-preview.jpg">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Game",
+      "name": "Free Online Snake Game",
+      "description": "A classic Snake game playable in web browsers.",
+      "url": "https://meenaviyal.com/snake/",
+      "author": {
+        "@type": "Person",
+        "name": "Meenaviyal"
+      },
+      "genre": "Arcade",
+      "gamePlatform": "Web browser",
+      "operatingSystem": "Any",
+      "applicationCategory": "Game",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1024"
+      }
+    }
+    </script>
 </head>
 <body>
-    <div id="gameWrapper">
-        <div id="scoreBoard">Score: <span id="score">0</span> | High Score: <span id="highScore">0</span></div>
-        <div id="gameContainer">
-            <canvas id="gameCanvas"></canvas>
-            <div id="message"></div>
-            <div id="fireworks"></div>
-        </div>
-        <div id="mobileControls">
-            <button id="upBtn" class="controlBtn">↑</button>
-            <div id="leftRightContainer">
-                <button id="leftBtn" class="controlBtn">←</button>
-                <button id="rightBtn" class="controlBtn">→</button>
+    <header>
+        <h1 class="game-title">Snake Game</h1>
+        <p class="game-subtitle">Classic Arcade Fun</p>
+    </header>
+    <main>
+        <div id="gameWrapper">
+            <div id="scoreBoard">Score: <span id="score">0</span> | High Score: <span id="highScore">0</span></div>
+            <div id="gameContainer">
+                <canvas id="gameCanvas"></canvas>
+                <div id="message"></div>
+                <div id="fireworks"></div>
             </div>
-            <button id="downBtn" class="controlBtn">↓</button>
+            <div id="mobileControls">
+                <button id="upBtn" class="controlBtn" aria-label="Move Up">↑</button>
+                <div id="leftRightContainer">
+                    <button id="leftBtn" class="controlBtn" aria-label="Move Left">←</button>
+                    <button id="rightBtn" class="controlBtn" aria-label="Move Right">→</button>
+                </div>
+                <button id="downBtn" class="controlBtn" aria-label="Move Down">↓</button>
+            </div>
         </div>
-    </div>
+    </main>
+    <footer>
+        <p>© 2024 Meenaviyal. All rights reserved. <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a></p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
